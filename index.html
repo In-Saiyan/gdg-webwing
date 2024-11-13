@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id = "forbutton" > 
+      
+    </div>
+    <section id = "get-this"> </section> <hr>
+    <section id = "randomahhgif"> </section>
+    <script>
+      ur_link = "https://dummyjson.com/quotes"
+      async function fetcher(){
+        response = await fetch(ur_link)
+        response = await response.json()
+        response = response.quotes; 
+        
+        window.addEventListener('wheel', (ctx) => {
+          ctx.preventDefault();
+
+          cur = window.scrollY
+
+          h = document.body.scrollHeight
+
+          
+          
+          colors = [
+            "#2C3E50", "#34495E", "#1ABC9C", "#16A085", "#27AE60", 
+            "#2ECC71", "#16A085", "#2980B9", "#8E44AD", "#9B59B6", 
+            "#34495E", "#1D3557", "#ACDACC", "#A100E0", "#457B9D", 
+            "#1D3557", "#2F4F4F", "#4B0082", "#6A5ACD", "#4B0082", 
+            "#5A3D66", "#202C59", "#273C75", "#191970", "#0D1B2A", 
+            "#1F3A3D", "#003366", "#003366", "#0A0A2A", "#2E3B55", 
+            "#212F3D", "#2A3D45", "#234E52", "#283747", "#2C3E50", 
+            "#4F5D75", "#0B3D91", "#2E4053", "#283593", "#1A237E", 
+            "#4A148C", "#2E7D32", "#3E2723", "#2B3E50", "#212121", 
+            "#546E7A", "#616161", "#455A64", "#3B3F45", "#1F262B"
+          ];
+
+
+          trigger = h / 6  
+          document.body.style.backgroundColor = colors[Math.round(Math.random() * 50)]
+
+          if(ctx.deltaY > 0){
+            cur = Math.min(cur + trigger, h - window.innerHeight)
+            cur = Math.round(cur/trigger) * trigger;
+          } else {
+            cur = Math.min(cur - trigger, 0)
+          }
+          
+          window.scrollTo({
+            top: cur,
+            behavior: "smooth"
+          })
+
+        }, {passive: false})
+        elem = document.getElementById("get-this");
+        rand = Math.random() * response.length
+        rand = Math.round(rand)
+        for(i = 0; i < 5; i++){
+          elem.insertAdjacentHTML('afterbegin',`<div id=\"quotes-container\">『${response[(i+rand)%response.length].quote}』</div>`)
+        }
+      }
+      fetcher()
+
+      elem2 = document.getElementById("randomahhgif")
+
+      my_only_api_key_that_is_public = "NLmDT0sCONdy2R93dJD8q3kZulkMmMn4"
+
+      //jojo reference time
+      async function getgf(){
+        ora = `https://api.giphy.com/v1/gifs/random?api_key=${my_only_api_key_that_is_public}&tag=cat`
+        response = await fetch(ora)
+        response = await response.json()
+        response = await response.data 
+        response = response.images.original.url
+        console.log(response)
+        elem2.insertAdjacentHTML('afterbegin', `<div><img src ="${response}"></div>`)
+      }
+
+      getgf()
+
+      
+    </script>
+  </body>
+</html>

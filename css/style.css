@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  min-height: 100vh;
+  background-color: #0a0a0a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  scroll-behavior: smooth;
+  transition: all 0.3s ease;
+}
+
+#quotes-container{
+  height: 100vh;
+  margin: 0 5%;
+  font-family: Jost;
+  /*border: white solid 2px;*/
+  border-radius: 1rem;
+  font-size: 70px;
+  padding: 8px 16px;
+  color: #fafafa;
+  display: flex;
+  align-items: center;
+}
+
+#randomahhgif{
+  height: 100vh;
+  margin: 0 5%;
+  display: flex;
+  align-items: center;
+  & img {
+    height: 400px;
+  }
+}
