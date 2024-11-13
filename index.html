@@ -11,7 +11,9 @@
       
     </div>
     <section id = "get-this"> </section> <hr>
-    <section id = "randomahhgif"> </section>
+    <section id = "randomahhgif">
+      <h1>Here's a random Cat.</h1>
+    </section>
     <script>
       ur_link = "https://dummyjson.com/quotes"
       async function fetcher(){
@@ -62,7 +64,7 @@
         rand = Math.random() * response.length
         rand = Math.round(rand)
         for(i = 0; i < 5; i++){
-          elem.insertAdjacentHTML('afterbegin',`<div id=\"quotes-container\">『${response[(i+rand)%response.length].quote}』</div>`)
+          elem.insertAdjacentHTML('afterbegin',`<div id=\"quotes-container\">『${response[(i+rand)%response.length].quote}』- ${response[(i+rand)%response.length].author}</div>`)
         }
       }
       fetcher()
